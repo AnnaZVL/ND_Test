@@ -1,11 +1,11 @@
 <script setup>
-import IconSignup from '@/components/UI/SVG/IconSignup.vue';
+defineProps({ text: String });
 </script>
 
 <template>
     <button class="btn">
-        <IconSignup />
-        Вход
+        <slot name="icon"> </slot>
+        {{ text }}
     </button>
 </template>
 
@@ -19,12 +19,11 @@ import IconSignup from '@/components/UI/SVG/IconSignup.vue';
     border-radius: 32px;
     border: 1px solid transparent;
     cursor: pointer;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     line-height: 32px;
     font-weight: 500;
     color: $color_white;
-    min-width: 144px;
     background: $color_green-light;
     transition: background 0.3s ease-in-out;
 

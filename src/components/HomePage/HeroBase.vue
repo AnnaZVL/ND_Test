@@ -1,20 +1,13 @@
-<script setup>
-// import img from '/img/hero_'
-</script>
+<script setup></script>
 
 <template>
     <section class="hero">
-        <div class="hero__container">
-            <div class="content">
-                <h1 class="title">Мои заметки</h1>
-                <p class="descr">Не забывай о важном, храни его в облаке.</p>
-            </div>
-            <div class="media">
-                <!-- <div class=""> -->
-                <img src="/img/hero_img.png" alt="">
-            <!-- </div> -->
-            </div>      
-
+        <div class="content">
+            <h1 class="title">Мои заметки</h1>
+            <p class="descr">Не забывай о важном, храни его в облаке.</p>
+        </div>
+        <div class="media">
+            <img src="/img/hero_img.png" alt="" />
         </div>
     </section>
 </template>
@@ -23,12 +16,10 @@
 @import '@/assets/scss/_variables.scss';
 .hero {
     height: 100%;
-    &__container {
-        display: flex;
-        align-items: center;
-        gap: 60px;
-        height: 100%;
-    }
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    height: 100%;
 
     .content {
         flex: 43%;
@@ -47,9 +38,9 @@
         max-width: 60%;
     }
 
-    .media {        
+    .media {
         padding: 150px 105px 0 105px;
-        position: relative;        
+        position: relative;
         &::after {
             content: '';
             position: absolute;
@@ -77,7 +68,7 @@
     .hero {
         &__container {
             flex-direction: column;
-            gap: 0;            
+            gap: 0;
         }
 
         // .content {

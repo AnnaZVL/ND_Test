@@ -45,6 +45,7 @@ body {
     line-height: 32px;    
     background: $color_dark;
     position: relative;
+    height: 100%;
 }
 
 img {
@@ -80,8 +81,72 @@ p {
 }
 
 #app {
+    display: flex;
+    flex-direction: column;    
     min-height: 100vh;
     overflow: hidden;
+}
+
+.main {
+    height: 100%;    
+}
+
+.form__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    
+    .title {
+        font-size: 48px;
+        line-height: 72px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        width: 100%;
+
+        .actions {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+
+            .btn-reg {
+                padding: 0;
+                color: $color_green-light;
+                background: transparent;
+                border: 1px solid transparent;
+                cursor: pointer;
+                transition: color 0.3s ease-in-out;
+
+                &:hover {
+                    color: $color_white;
+                }
+            }
+
+            .btn {
+                margin-left: auto;
+            }
+        }
+
+        .text {
+            font-size: 18px;
+            line-height: 28px;
+            color: $color_gray;
+        }
+
+        .error {
+            padding: 8px 20px;
+            color: $color_error;
+            background: rgba(255, 116, 97, 0.1);
+            border-radius: 24px;
+            font-size: 18px;
+            line-height: 28px;
+        }
+    }
 }
 
 @media (max-width: 1366px) {
@@ -93,6 +158,31 @@ p {
 @media (max-width: 768px) {
     .container {
         max-width: 688px;
+    }
+}
+
+@media (max-width: 562px) {
+    .form__inner {
+        gap: 28px;
+
+        .title {
+            font-size: 32px;
+            line-height: 36px;
+        }
+
+        .form { 
+            gap: 28px;
+
+            .actions {
+                flex-direction: column-reverse;
+                gap: 12px;
+
+                .btn {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        }
     }
 }
 

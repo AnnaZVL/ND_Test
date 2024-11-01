@@ -18,7 +18,7 @@ html {
 @font-face {
     font-family: "Montserrat";
     src: url("/fonts/Montserrat-Bold.ttf");
-    font-weight: 700;
+    font-weight: bold;
     font-display: swap;
 }
 
@@ -36,6 +36,13 @@ html {
     font-display: swap;
 }
 
+@font-face {
+    font-family: "Montserrat";
+    src: url("/fonts/Montserrat-Black.ttf");
+    font-weight: 900;
+    font-display: swap;
+}
+
 body {
     margin: 0 auto;
     font-family: "Montserrat", sans-serif;
@@ -50,6 +57,7 @@ body {
 
 img {
     width: 100%;
+    object-fit: cover;
 }
 
 a {
@@ -157,7 +165,7 @@ p {
 
 @media (max-width: 768px) {
     .container {
-        max-width: 688px;
+        max-width: 718px;
     }
 }
 

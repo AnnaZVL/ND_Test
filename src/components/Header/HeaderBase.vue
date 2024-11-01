@@ -14,7 +14,6 @@ const emits = ['close-modal'];
 
 const handlModal = () => {
     showModalLogin.value = !showModalLogin.value;
-    // router.push({name: 'Страница заметок'})
 };
 </script>
 
@@ -64,6 +63,17 @@ const handlModal = () => {
 @media (max-width: 1366px) {
     .header {
         padding: 20px 0;
+    }
+}
+
+@media (max-width: 562px) {
+    .header {
+        .logo {
+            svg {
+                width: 154px;
+                height: 36px;
+            }
+        }
     }
 }
 </style>

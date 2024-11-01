@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HeroBase from '@/components/HomePage/HeroBase.vue';
+
+import HeroBase from '@/views/HomePage/HeroBase.vue';
 import HeaderBase from '@/components/Header/HeaderBase.vue'
-import NotesPage from "./src/components/NotesPage/NotesPage.vue";
+import NotesPage from "@/views/NotesPage/NotesPage.vue";
 
 const router = createRouter({
     history: createWebHistory(),

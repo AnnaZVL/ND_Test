@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import HeroBase from '@/views/HomePage/HeroBase.vue';
-import HeaderBase from '@/components/Header/HeaderBase.vue'
+import HeaderHome from '@/components/Header/HeaderHome.vue';
+import HeaderNotes from "@/components/Header/HeaderNotes.vue";
 import NotesPage from "@/views/NotesPage/NotesPage.vue";
 
 const router = createRouter({
@@ -10,13 +11,13 @@ const router = createRouter({
         {
             path: "/", 
             name: "Главная страница",
-            components: { default: HeroBase, header: HeaderBase },
+            components: { default: HeroBase, header: HeaderHome },
       
         },
         {
             path: "/notes", 
             name: "Страница заметок",
-            components: { default: NotesPage, header: HeaderBase },
+            components: { default: NotesPage, header: HeaderNotes },
       
         }
     ]

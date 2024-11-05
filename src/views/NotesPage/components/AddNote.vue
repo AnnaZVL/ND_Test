@@ -1,39 +1,38 @@
 <script setup>
+import IconAddNote from '@/components/UI/SVG/IconAddNote.vue';
 import ModalBase from '@/components/Modals/ModalBase.vue';
 import AddNoteForm from '@/components/Form/AddNoteForm.vue';
-import { ref } from 'vue';
+
+import { provide, ref } from 'vue';
 
 const showModal = ref(false);
 
-const emits = ['close-modal'];
-
 const handlModal = () => {
-    showModal.value = !showModal.value;    
+    showModal.value = !showModal.value;
 };
 
+provide('toggle-modal', handlModal);
 </script>
 
 <template>
-    <button class="add-note" @click="handlModal" title="Добавить заметку" aria-level="Добавить заметку">
-        <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path d="M1 9H17M9 1L9 17" stroke="white" stroke-width="2" stroke-linecap="round" />
-        </svg>
+    <button
+        class="add-note"
+        @click="handlModal"
+        title="Добавить заметку"
+        aria-level="Добавить заметку"
+    >
+        <IconAddNote />
     </button>
-    <ModalBase v-if="showModal" @close-modal="handlModal">
-       <AddNoteForm/>
+
+    <ModalBase v-if="showModal">
+        <AddNoteForm />
     </ModalBase>
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
 
-.add-note {    
+.add-note {
     display: flex;
     align-items: center;
     justify-content: center;

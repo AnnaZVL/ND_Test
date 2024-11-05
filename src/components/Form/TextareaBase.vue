@@ -1,8 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 
-const count = ref(0);
-const maxLength = 500;
+const maxLength = 255;
 
 const props = defineProps({
     modelValue: String,
@@ -13,8 +12,9 @@ const props = defineProps({
 
 const emits = defineEmits(['update:modelValue']);
 
+const count = computed(() => props.modelValue.length);
+
 const handelSubmit = (event) => {
-    count.value += 1;
     emits('update:modelValue', event.target.value);
 };
 </script>
@@ -25,12 +25,12 @@ const handelSubmit = (event) => {
         <label class="label" :for="name">
             <textarea
                 class="input"
+                :value="modelValue"
                 :id="name"
                 :placeholder="placeholder"
                 :maxlength="maxLength"
                 @input="handelSubmit"
                 autocomplete="off"
-                :value="modelValue"
                 rows="6"
             />
         </label>
@@ -41,7 +41,7 @@ const handelSubmit = (event) => {
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
 
 .box {
     display: flex;
@@ -72,7 +72,7 @@ const handelSubmit = (event) => {
 
         .input {
             padding: 22px 24px;
-            font-family: "Montserrat";
+            font-family: 'Montserrat';
             font-size: 18px;
             line-height: 28px;
             color: $color_dark;

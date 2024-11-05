@@ -1,11 +1,10 @@
 <script setup>
-import { computed, ref } from 'vue';
 import IconPassword from '@/components/UI/SVG/IconPassword.vue';
 import IconPasswordClose from '@/components/UI/SVG/IconPasswordClose.vue';
 
+import { computed, ref } from 'vue';
+
 const isShow = ref(false);
-const count = ref(0);
-const maxLength = 100;
 
 const props = defineProps({
     modelValue: String,
@@ -14,6 +13,7 @@ const props = defineProps({
     title: String,
     placeholder: String,
     isIcon: Boolean,
+    maxLength: Number,
 });
 
 const emits = defineEmits(['update:modelValue']);
@@ -26,10 +26,11 @@ const inputType = computed(() => {
     return props.type === 'password' && isShow.value ? 'text' : props.type;
 });
 
+const count = computed(() => props.modelValue.length);
+
 const handelSubmit = (event) => {
-    count.value += 1
-    emits('update:modelValue', event.target.value)
-}
+    emits('update:modelValue', event.target.value);
+};
 </script>
 
 <template>
@@ -38,27 +39,27 @@ const handelSubmit = (event) => {
         <label class="label" :for="name">
             <input
                 class="input"
+                :value="modelValue"
                 :type="inputType"
                 :id="name"
                 :placeholder="placeholder"
                 :maxlength="maxLength"
                 @input="handelSubmit"
                 autocomplete="off"
-                :value="modelValue"
             />
             <button class="btn" @click="changeIcon" v-if="isIcon" type="button">
                 <IconPassword v-if="isShow" />
                 <IconPasswordClose v-else />
             </button>
         </label>
-        <div class="info">
+        <div class="info" v-if="maxLength">
             <span class="count title">{{ count + '/' + maxLength }}</span>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
 
 .box {
     display: flex;
@@ -93,7 +94,7 @@ const handelSubmit = (event) => {
 
         .input {
             padding: 22px 24px;
-            font-family: "Montserrat";
+            font-family: 'Montserrat';
             font-size: 18px;
             line-height: 28px;
             color: $color_dark;
@@ -128,6 +129,10 @@ const handelSubmit = (event) => {
             cursor: pointer;
             transform: translateY(-50%);
         }
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 24px;
     }
 }
 </style>

@@ -10,7 +10,8 @@ defineProps({ text: String });
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
+
 .btn {
     padding: 12px 24px;
     display: flex;

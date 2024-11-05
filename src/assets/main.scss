@@ -1,4 +1,4 @@
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
 
 html {
     box-sizing: border-box;

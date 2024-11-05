@@ -1,20 +1,6 @@
 <script setup>
-import IconSignup from '@/components/UI/SVG/IconSignup.vue';
 import LogoBase from '@/components/UI/SVG/LogoBase.vue';
-import ButtonBase from '@/components/UI/Buttons/ButtonBase.vue';
-import ModalBase from '../Modals/ModalBase.vue';
-import AllForm from '../Form/AllForm.vue';
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
-
-const showModalLogin = ref(false);
-const router = useRouter();
-
-const emits = ['close-modal'];
-
-const handlModal = () => {
-    showModalLogin.value = !showModalLogin.value;
-};
+import UserBlock from './components/UserBlock.vue';
 </script>
 
 <template>
@@ -24,22 +10,15 @@ const handlModal = () => {
                 <router-link class="logo" to="/" aria-label="На главную">
                     <LogoBase />
                 </router-link>
-                <ButtonBase text="Вход" @click="handlModal">
-                    <template #icon>
-                        <IconSignup />
-                    </template>
-                </ButtonBase>
+
+                <UserBlock />
             </div>
         </div>
     </header>
-
-    <ModalBase v-if="showModalLogin" @close-modal="handlModal">
-        <AllForm />
-    </ModalBase>
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
 .header {
     padding: 40px 0;
     width: 100%;

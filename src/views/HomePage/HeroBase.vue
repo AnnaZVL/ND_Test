@@ -15,7 +15,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
 .hero {
     display: flex;
     align-items: center;
@@ -41,7 +41,7 @@
         width: 60%;
     }
 
-    .media {        
+    .media {
         position: relative;
 
         &::after {
@@ -89,7 +89,7 @@
 
         .title {
             margin-bottom: 20px;
-        }         
+        }
     }
 }
 
@@ -113,8 +113,8 @@
 
         .descr {
             font-size: 24px;
-            line-height: 36px;    
-            width: 100%;        
+            line-height: 36px;
+            width: 100%;
         }
 
         .media {
@@ -128,12 +128,11 @@
 
 @media (max-width: 380px) {
     .hero {
-        .media {            
+        .media {
             .img-box {
                 padding: 50px 36px 0 36px;
             }
         }
     }
 }
-
 </style>

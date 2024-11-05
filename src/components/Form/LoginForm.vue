@@ -2,23 +2,56 @@
 import ButtonBase from '@/components/UI/Buttons/ButtonBase.vue';
 import InputBase from './InputBase.vue';
 
+import emailValidation from '@/validation/emailValidation';
+
 import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useUserStore } from '@/store/userStore';
 
 const emits = defineEmits(['update:modelValue', 'changeForm']);
-const isError = ref(false);
+
 const email = ref('');
 const password = ref('');
-const re_password = ref('');
+const confirm_password = ref('');
 const errorMessage = ref('');
 
-const closeModal = inject('sign')
-const router = useRouter()
+const closeModal = inject('toggle-modal');
 
-const handleSubmit = () => {
-    console.log('OK', email.value, password.value);
-    closeModal()
-    router.push({name: 'Страница заметок'})
+const router = useRouter();
+const userStore = useUserStore();
+
+const handleSubmit = async () => {
+    const data = {
+        email: email.value,
+        password: password.value,
+        confirm_password: confirm_password.value,
+    };
+
+    errorMessage.value = '';
+    if (!emailValidation(email.value)) {
+        errorMessage.value = 'Введите правильную почту';
+        return;
+    }
+
+    if (password.value.length < 4 || password.value.length > 15) {
+        errorMessage.value = 'Пароль должен содержать от 4 до 15 символов';
+        return;
+    }
+
+    if (password.value !== confirm_password.value) {
+        errorMessage.value = 'Пароли не совпадают';
+        return;
+    }
+
+    await userStore.registerUser(data);
+
+    if (userStore.errorMessage) {
+        errorMessage.value = userStore.errorMessage;
+        return;
+    }
+
+    closeModal();
+    router.push({ name: 'Страница заметок' });
 };
 </script>
 
@@ -36,20 +69,20 @@ const handleSubmit = () => {
                     :isIcon="false"
                 />
                 <InputBase
+                    v-model="password"
                     name="password"
                     type="password"
                     title="Пароль"
                     placeholder="Введите пароль"
                     :isIcon="true"
-                    v-model="password"
                 />
                 <InputBase
-                    name="re_password"
+                    v-model="confirm_password"
+                    name="confirm_password"
                     type="password"
                     title="Пароль еще раз"
                     placeholder="Введите пароль"
                     :isIcon="true"
-                    v-model="re_password"
                 />
             </div>
             <div class="bottom">
@@ -63,11 +96,10 @@ const handleSubmit = () => {
                     >
                     <ButtonBase text="Зарегистрироваться" type="submit" />
                 </div>
-                <p class="error" v-if="isError">{{ errorMessage }}</p>
+                <p class="error" v-if="errorMessage">{{ errorMessage }}</p>
             </div>
         </form>
     </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

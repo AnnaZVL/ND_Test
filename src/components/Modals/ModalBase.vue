@@ -1,15 +1,10 @@
 <script setup>
 import IconDelete from '@/components/UI/SVG/IconDelete.vue';
 
-import { onMounted, onUnmounted, provide } from 'vue';
+import { inject, onMounted, onUnmounted } from 'vue';
 
-const emits = defineEmits(['closeModal']);
+const toggleModal = inject('toggle-modal');
 
-const closeModal = () => {
-    emits('closeModal');
-};
-
-provide('sign', closeModal);
 onMounted(() => {
     document.body.classList.add('scroll-stop');
 });
@@ -22,9 +17,9 @@ onUnmounted(() => {
 <template>
     <Teleport to="body">
         <div class="modal">
-            <div class="wrapper" @click="closeModal"></div>
+            <div class="wrapper" @click="toggleModal"></div>
             <div class="body" @click.stop>
-                <button class="btn close" @click="closeModal">
+                <button class="btn close" @click="toggleModal">
                     <IconDelete />
                 </button>
                 <slot></slot>
@@ -34,7 +29,8 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/_variables.scss';
+@use '@/assets/scss/_variables.scss' as *;
+
 .modal {
     position: absolute;
     top: 0;

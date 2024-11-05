@@ -1,5 +1,6 @@
-# Vue 3 + Vite
+# Приложение для создания и храненния заметок
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Выполненно, как тестовое задание для компании "Новый Диск".
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+Реализовано на Vue3 с использованием pinia, router-vue, axios, sass. Сервер предоставлен в задании. Реализована авторизация и регистрация нового пользователя. Валидация как на стороне клиента, так и по ответам от сервера. Адаптивная, кроссбраузерная верстка.
+Ознакомиться можно по ссылке https://ndtest.netlify.app
